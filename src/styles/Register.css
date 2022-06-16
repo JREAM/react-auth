@@ -1,0 +1,30 @@
+.register {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #f2f2f2;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+  padding: 30px;
+}
+
+.register__google {
+  background-color: #4285f4;
+}
+
+.register__github {
+  background-color: #111;
+  color: #fff;
+}
+
+.register div {
+  margin-top: 7px;
+}
