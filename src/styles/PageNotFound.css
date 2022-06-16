@@ -1,4 +1,4 @@
-.forgot_password {
+.page_not_found {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.forgot_password__container {
+.page_not_found__container {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -16,6 +16,6 @@
   padding: 30px;
 }
 
-.forgot_password div {
+.page_not_found div {
   margin-top: 7px;
 }

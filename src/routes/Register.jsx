@@ -7,6 +7,7 @@ import {
   signInWithGoogle,
   signInWithGitHub
 } from "../lib/firebase"
+
 import "../styles/Register.css"
 
 function Register() {
@@ -27,47 +28,54 @@ function Register() {
   }, [user, loading])
 
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button>
-        <button className="register__btn register__github" onClick={signInWithGitHub}>
-          Register with GitHub
-        </button>
+    <>
+      { loading &&
+      <div id="loader-container">
+        <div id="loader"></div>
+      </div>
+      }
+      <div className="register">
+        <div className="register__container">
+          <input
+            type="text"
+            className="register__textBox"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+          />
+          <input
+            type="text"
+            className="register__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <input
+            type="password"
+            className="register__textBox"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button className="register__btn" onClick={register}>
+            Register
+          </button>
+          <button
+            className="register__btn register__google"
+            onClick={signInWithGoogle}
+          >
+            Register with Google
+          </button>
+          <button className="register__btn register__github" onClick={signInWithGitHub}>
+            Register with GitHub
+          </button>
 
-        <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          <div>
+            Already have an account? <Link to="/">Login</Link> now.
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

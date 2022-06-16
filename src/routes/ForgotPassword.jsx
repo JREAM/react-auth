@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { auth, sendPasswordReset } from "../lib/firebase"
+
 import "../styles/ForgotPassword.css"
 
 function ForgotPassword() {
@@ -16,23 +17,30 @@ function ForgotPassword() {
   }, [user, loading])
 
   return (
-    <div className="forgot_password">
-      <div className="forgot_password__container">
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <button onClick={() => sendPasswordReset(email)}>
-          Send password reset email
-        </button>
+    <>
+      { loading &&
+      <div id="loader-container">
+        <div id="loader"></div>
+      </div>
+      }
+      <div className="forgot_password">
+        <div className="forgot_password__container">
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+          />
+          <button onClick={() => sendPasswordReset(email)}>
+            Send password Reset Email
+          </button>
 
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          <div>
+            Don't have an account? <Link to="/register">Register</Link> now.
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

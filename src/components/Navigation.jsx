@@ -15,13 +15,21 @@ function Navigation() {
           <li className="navigation-item"><Link className="navigation-link" to="/">Home</Link></li>
           { !user ?
             <>
-              <li className="navigation-item"><Link className="navigation-link" to="/login">Login</Link></li>
-              <li className="navigation-item"><Link className="navigation-link" to="/register">Register</Link></li>
+              <li className="navigation-item">
+                <Link className="navigation-link" to="/login">Login</Link>
+              </li>
+              <li className="navigation-item">
+                <Link className="navigation-link" to="/register">Register</Link>
+              </li>
             </>
             :
             <>
-            <li className="navigation-item"><Link className="navigation-link" to="/dashboard">Dashboard</Link></li>
-            <li className="navigation-item"><Link className="navigation-link" to="/" onClick={logout}>Log Out</Link></li>
+              <li className="navigation-item">
+                <Link className="navigation-link" to="/dashboard">Dashboard</Link>
+              </li>
+              <li className="navigation-item">
+                <Link className="navigation-link" to="/" onClick={logout}>Log Out</Link>
+              </li>
             </>
           }
         </ul>

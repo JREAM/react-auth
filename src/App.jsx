@@ -8,6 +8,8 @@ import Login from "./routes/Login"
 import Register from "./routes/Register"
 import Reset from "./routes/ForgotPassword"
 import Dashboard from "./routes/Dashboard"
+import PageNotFound from "./routes/PageNotFound"
+
 import Navigation from './components/Navigation'
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
