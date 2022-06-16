@@ -18,7 +18,7 @@ For more information on vite environ variables visit: [https://vitejs.dev/guide/
 
 #### Vercel Hosting
 
-When using Vercel the `.env.local` is not included for build time so when under **Configure Project** manually add the `NAME/VALUE` to the **Environment Variables** one by one.
+- **IMPORTANT**: When using Vercel the `.env.local` is not included for build time so when under **Configure Project** manually add the `NAME/VALUE` to the **Environment Variables** one by one.
 
 #### Vite Environment Variables
 
