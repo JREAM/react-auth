@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { query, collection, getDocs, where } from "firebase/firestore"
@@ -43,9 +44,24 @@ function Dashboard() {
           Logged in as
           <div>{name}</div>
           <div>{user?.email}</div>
-          <button className="dashboard__btn" onClick={logout}>
-            Logout
-          </button>
+          <hr />
+          <ul>
+            <li>
+              <Link to="/dashboard/projects/create">
+                Create Project
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/projects">
+                All Projects
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/tasks">
+                Tasks
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </>

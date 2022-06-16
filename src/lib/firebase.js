@@ -61,13 +61,12 @@ const signInWithGoogle = async () => {
 // Provider: GitHub
 const signInWithGitHub = async () => {
   try {
-    const res=await signInWithPopup(auth, githubProvider)
+    const res = await signInWithPopup(auth, githubProvider)
     const user = res.user
-    const q = query(
+    const docs = await getDocs(query(
       collection(db, "users"),
       where("uid", "==", user.uid)
-    )
-    const docs = await getDocs(q)
+    ))
     // If No User Exists, Create a record for GitHub
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), {
