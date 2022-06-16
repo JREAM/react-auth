@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { query, collection, getDocs, where } from "firebase/firestore"
-import { auth, db, logout } from "../lib/firebase"
+import { auth, db, logout } from "../lib/firebase-config"
 
 import "../styles/Dashboard.css"
 

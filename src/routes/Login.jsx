@@ -6,7 +6,7 @@ import {
   logInWithEmailAndPassword,
   signInWithGoogle,
   signInWithGitHub
-} from "../lib/firebase"
+} from "../lib/firebase-config"
 
 import "../styles/Login.css"
 

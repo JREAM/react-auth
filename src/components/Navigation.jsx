@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth, logout } from "../lib/firebase"
+import { auth, logout } from "../lib/firebase-config"
 
 import "../styles/Home.css"
 

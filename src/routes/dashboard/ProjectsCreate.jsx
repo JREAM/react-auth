@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { query, collection, addDoc, getDocs, where } from "firebase/firestore"
-import { auth, db } from "../../lib/firebase"
+import { auth, db } from "../../lib/firebase-config"
 import { useForm } from 'react-hook-form'
 
 import "../../styles/dashboard/ProjectsCreate.css"

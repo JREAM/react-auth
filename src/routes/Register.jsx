@@ -6,7 +6,7 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
   signInWithGitHub
-} from "../lib/firebase"
+} from "../lib/firebase-config"
 
 import "../styles/Register.css"
 
