@@ -60,7 +60,7 @@ function Login() {
             Login with GitHub
           </button>
           <div>
-            <Link to="/reset">Forgot Password</Link>
+            <Link to="/forgot_password">Forgot Password</Link>
           </div>
           <div>
             Don't have an account? <Link to="/register">Register</Link> now.

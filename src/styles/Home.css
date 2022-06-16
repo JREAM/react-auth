@@ -1,7 +1,4 @@
 .home {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -9,13 +6,7 @@
 .home__container {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  background-color: #f2f2f2;
   border-radius: 0.4rem;
-  border: 1px solid #ccc;
+  border: 1px solid #f2f2f2;
   padding: 30px;
-}
-
-.home div {
-  margin-top: 7px;
 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { auth, logout } from "../lib/firebase"
 
@@ -12,23 +12,35 @@ function Navigation() {
       <section className="container">
         <a className="navigation-title" href="/">App</a>
         <ul className="navigation-list">
-          <li className="navigation-item"><Link className="navigation-link" to="/">Home</Link></li>
+          <li className="navigation-item">
+            <NavLink className={({ isActive }) => (isActive ? "navigation-link active" : "navigation-link")} to="/">
+              Home
+            </NavLink>
+          </li>
           { !user ?
             <>
               <li className="navigation-item">
-                <Link className="navigation-link" to="/login">Login</Link>
+                <NavLink className={({ isActive }) => (isActive ? "navigation-link active" : "navigation-link")} to="/login">
+                  Login
+                </NavLink>
               </li>
               <li className="navigation-item">
-                <Link className="navigation-link" to="/register">Register</Link>
+                <NavLink className={({ isActive }) => (isActive ? "navigation-link active" : "navigation-link")} to="/register">
+                  Register
+                </NavLink>
               </li>
             </>
             :
             <>
               <li className="navigation-item">
-                <Link className="navigation-link" to="/dashboard">Dashboard</Link>
+                <NavLink className={({ isActive }) => (isActive ? "navigation-link active" : "navigation-link")} to="/dashboard">
+                  Dashboard
+                </NavLink>
               </li>
               <li className="navigation-item">
-                <Link className="navigation-link" to="/" onClick={logout}>Log Out</Link>
+                <NavLink className="navigation-link" to="/" onClick={logout}>
+                  Log Out
+                </NavLink>
               </li>
             </>
           }
