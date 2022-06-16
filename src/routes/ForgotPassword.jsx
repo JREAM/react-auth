@@ -25,6 +25,7 @@ function ForgotPassword() {
       }
       <div className="forgot_password">
         <div className="forgot_password__container">
+          <h2>Forgot Password</h2>
           <input
             type="text"
             value={email}
@@ -32,7 +33,7 @@ function ForgotPassword() {
             placeholder="E-mail Address"
           />
           <button onClick={() => sendPasswordReset(email)}>
-            Send password Reset Email
+            Send Reset Instructions
           </button>
 
           <div>

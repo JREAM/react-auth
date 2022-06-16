@@ -33,6 +33,7 @@ textarea {
   line-height: 5.1rem;
   text-decoration: none;
   padding: 1.6rem;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 .navigation .navigation-list {
@@ -53,6 +54,22 @@ textarea {
 }
 
 /* Anchors */
+a {
+  color: #606c76;
+  text-decoration: dotted;
+  border-bottom: 1px dotted #606c76;
+}
+
+a:hover {
+  color: #111;
+  border-bottom: 1px dotted #111;
+  background: rgba(0, 0, 0, 0.02)
+}
+
+a.navigation-link {
+  border: none;
+}
+
 a.navigation-link:hover,
 a.navigation-link.active {
   color: #9b4dca;
@@ -116,13 +133,68 @@ button {
   border-radius: .6rem !important;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-textarea {
-  background: #fff !important;
+button,
+input[type=submit] {
+  border: none;
+  background: #f9f9f9;
+  color: #555;
+  font-size: 1.3rem;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgba(99, 99, 99, 0.3);
 }
 
+button:hover,
+button:focus,
+input[type=submit]:hover {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 12px 20px rgba(103, 103, 103, 0.4);
+  color: #222;
+  transform: translateY(-5px);
+  border: 1px solid rgba(99, 99, 99, 0.3);
+}
+
+input::placeholder {
+  color: rgb(171, 171, 171);
+}
+
+input[type='text'],
+input[type='text']:focus,
+input[type='email'],
+input[type='email']:focus,
+input[type='password'],
+input[type='password']:focus,
+textarea {
+  font-size: 1.4rem;
+  border: none;
+  background: #fff !important;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+  border: 1px solid rgba(99, 99, 99, 0.3);
+}
+
+
+input:focus {
+  box-shadow: 0px 12px 20px rgba(103, 103, 103, 0.4);
+  color: #222;
+
+  transform: translateY(-5px);
+}
+
+/* Text */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  text-shadow: 1px 1px 1px #fff;
+}
 
 /* Full Page Loader */
 #loader-container {
@@ -166,4 +238,10 @@ textarea {
   100% {
     transform: rotate(1080deg);
   }
+}
+
+/* Social Login */
+.fa-brands {
+  font-style: normal;
+  font-size: 1.7rem;
 }

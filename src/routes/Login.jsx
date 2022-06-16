@@ -33,6 +33,7 @@ function Login() {
       }
       <div className="login">
         <div className="login__container">
+          <h2>Login</h2>
           <input
             type="text"
             className="login__textBox"
@@ -54,10 +55,10 @@ function Login() {
             Login
           </button>
           <button className="login__btn login__google" onClick={signInWithGoogle}>
-            Login with Google
+          <i className="fa-brands fa-google"></i> Login with Google
           </button>
           <button className="login__btn login__github" onClick={signInWithGitHub}>
-            Login with GitHub
+          <i className="fa-brands fa-github"></i> Login with GitHub
           </button>
           <div>
             <Link to="/forgot_password">Forgot Password</Link>
