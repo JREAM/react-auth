@@ -18,14 +18,15 @@ import {
   addDoc,
 } from "firebase/firestore"
 
+// Firebase Configuration set in the root .env file
 const firebaseConfig = {
-  apiKey: "AIzaSyBtnQVzSkfvj5Vr7jvR1mEKfqV-uaQ-HEg",
-  authDomain: "react-inventory-29553.firebaseapp.com",
-  projectId: "react-inventory-29553",
-  storageBucket: "react-inventory-29553.appspot.com",
-  messagingSenderId: "32793694475",
-  appId: "1:32793694475:web:1dc035dc481eedc7ef520e",
-  measurementId: "G-19T39H71Y7"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 }
 
 const app = initializeApp(firebaseConfig)
@@ -35,6 +36,7 @@ const db = getFirestore(app)
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
 
+// Provider: Google
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider)
@@ -42,6 +44,7 @@ const signInWithGoogle = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid))
     const docs = await getDocs(q)
     if (docs.docs.length === 0) {
+      // If No User Exists, Create a record for Google
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name: user.displayName,
@@ -55,17 +58,22 @@ const signInWithGoogle = async () => {
   }
 }
 
+// Provider: GitHub
 const signInWithGitHub = async () => {
   try {
     const res=await signInWithPopup(auth, githubProvider)
     const user = res.user
-    const q = query(collection(db, "users"), where("uid", "==", user.uid))
+    const q = query(
+      collection(db, "users"),
+      where("uid", "==", user.uid)
+    )
     const docs = await getDocs(q)
+    // If No User Exists, Create a record for GitHub
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name: user.displayName,
-        authProvider: "google",
+        authProvider: "github",
         email: user.email,
       })
     }
@@ -75,6 +83,7 @@ const signInWithGitHub = async () => {
   }
 }
 
+// Provider: Email (Login)
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
@@ -84,10 +93,12 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 }
 
+// Provider: Email (Register)
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password)
     const user = res.user
+    // Create a record for user Email
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
@@ -103,7 +114,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email)
-    alert("Password reset link sent!")
+    alert('Check your email for to reset your password.')
   } catch (err) {
     console.error(err)
     alert(err.message)
@@ -122,5 +133,5 @@ export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
-  logout,
+  logout
 }
