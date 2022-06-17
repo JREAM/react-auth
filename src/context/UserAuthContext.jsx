@@ -8,11 +8,14 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-
 import { auth } from "../firebase-config";
 
 const userAuthContext = createContext()
 
+/**
+ * These calls are generic in order to set try/catch callbacks
+ * within the Components for the status
+ */
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({})
 
@@ -27,25 +30,25 @@ export function UserAuthContextProvider({ children }) {
     };
   }, [])
 
-  function googleSignIn() {
+  const googleSignIn = () => {
     const googleAuthProvider = new GoogleAuthProvider()
     return signInWithPopup(auth, googleAuthProvider)
   }
 
-  function logIn(email, password) {
+  const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  function logOut() {
+  const logOut = () => {
     return signOut(auth)
   }
 
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password)
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email)
   }
 
-  function resetPassword(email) {
-    return sendPasswordResetEmail(auth, email)
+  const signUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
   }
 
   return (
