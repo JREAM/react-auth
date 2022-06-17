@@ -20,7 +20,6 @@ export function UserAuthContextProvider({ children }) {
   // User State MUST be null, see [NOTES: Reference to Auth] at the bottom
   const [user, setUser] = useState()
 
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser)
@@ -80,3 +79,6 @@ export function useUserAuth() {
    *
    * Since onAuthStateChanged returns null for unauthenticated users then I suggest using anything other than null for the initial currentUser state. undefined is a good indeterminant value. You can use this indeterminant value to conditionally render a loading indicator, or nothing at all, while the auth status is confirmed on the initial render.
    */
+// Reference Links
+// https://stackoverflow.com/questions/71703922/react-router-dom-unable-to-render-page-but-routes-back-due-to-privateroute/71704109#71704109
+// https://stackoverflow.com/questions/70961712/react-router-dom-6-page-redirected-to-sign-in-page-even-when-user-is-signed-in/70961859#70961859

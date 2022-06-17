@@ -47,8 +47,8 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="navigation-item">
-                <a className="navigation-link" href="/" onClick={handleLogout}>
-                  Logout
+                <a href="#" className="navigation-link" onClick={handleLogout}>
+                  Log Out
                 </a>
               </li>
 

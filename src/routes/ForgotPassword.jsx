@@ -25,6 +25,16 @@ function ForgotPassword() {
 
   return (
     <>
+      <div className="container">
+        <div className="row">
+          <div className="column column-50 column-offset-25">
+            <div className='breadcrumbs'>
+              <span><Link to="/">Home</Link> / Forgot Password</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="center-container">
         <div className="inner">
           <h2>Forgot Password</h2>

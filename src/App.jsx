@@ -15,8 +15,7 @@ import PageNotFound from "./routes/PageNotFound"
 import Navigation from './components/Navigation'
 
 import { UserAuthContextProvider } from "./context/UserAuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
-import PublicOnlyRoute from "./components/PublicOnlyRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
@@ -28,39 +27,33 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={
-              <PublicOnlyRoute>
                 <Login />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/register" element={
-              <PublicOnlyRoute>
                 <Register />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/forgot_password" element={
-              <PublicOnlyRoute>
                 <ForgotPassword />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/dashboard" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <Dashboard />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/projects/create" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardProjectsCreate />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/tasks" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardTasks />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/projects" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardProjects />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

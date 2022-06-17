@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { db } from '../../firebase-config'
 
 function Projects() {
   const [projects, setProjects] = useState('')
@@ -13,6 +12,10 @@ function Projects() {
   return (
     <>
       <div className="container">
+        <div className='breadcrumbs'>
+          <span><Link to="/">Home</Link> / <Link to="/dashboard">Dashboard</Link> / Projects</span>
+        </div>
+
         <div className="row">
           <div className="column">
             <h2>Projects</h2>
