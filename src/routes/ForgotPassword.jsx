@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
-import "../styles/ForgotPassword.css"
-
 function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [wasSent, setWasSent] = useState(false)
@@ -27,8 +25,8 @@ function ForgotPassword() {
 
   return (
     <>
-      <div className="forgot_password">
-        <div className="forgot_password__container">
+      <div className="center-container">
+        <div className="inner">
           <h2>Forgot Password</h2>
           {error && <span>{error}</span>}
           {wasSent && <span>Please check your email for instructions.</span>}

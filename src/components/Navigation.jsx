@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
-import "../styles/Home.css"
-
 function Navigation() {
   const { logOut, user } = useUserAuth()
 

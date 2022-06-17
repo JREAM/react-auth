@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react"
-
-import "../styles/PageNotFound.css"
-
 function PageNotFound() {
 
   return (
-    <div className="page_not_found">
-      <div className="page_not_found__container">
+    <div className="container">
+      <div className="container-inner">
       Page Not Found
       </div>
     </div>

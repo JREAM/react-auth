@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
-import "../styles/Register.css"
-
 function Register() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -24,8 +22,8 @@ function Register() {
 
   return (
     <>
-      <div className="register">
-        <div className="register__container">
+      <div className="center-container">
+        <div className="inner">
           <h2>Register</h2>
           {error && <span>{error}</span>}
 

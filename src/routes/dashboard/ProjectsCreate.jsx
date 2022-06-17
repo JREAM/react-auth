@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { db } from '../../firebase-config'
 
-import "../../styles/dashboard/ProjectsCreate.css"
-
 function ProjectsCreate() {
   const [message, setMessage] = useState('')
   const { register, handleSubmit, watch, formState: {errors}} = useForm({
@@ -34,35 +32,37 @@ function ProjectsCreate() {
 
   return (
     <>
-      <div className="projects_create">
-        <div className="projects_create__container">
-          <h2>Project: Create</h2>
-          {message && <p>message</p>}
+      <div className="container">
+        <div className="row">
+          <div className="column">
+            <h2>Project: Create</h2>
+            {message && <p>message</p>}
 
-          <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <fieldset>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
+              <fieldset>
 
-              <label htmlFor="title">Project Title</label>
-              <input
-                type="text"
-                id="title"
-                {...register("title",
-                {required: "Project Title is Required"})}
-              />
-              {errors?.title && <p>{errors.title.message}</p>}
+                <label htmlFor="title">Project Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  {...register("title",
+                  {required: "Project Title is Required"})}
+                />
+                {errors?.title && <p>{errors.title.message}</p>}
 
-              <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                {...register("description",
-                {required: "Description is required"})}
-              ></textarea>
-              {errors?.description && <p>{errors.description.message}</p>}
+                <label htmlFor="description">Description</label>
+                <textarea
+                  id="description"
+                  {...register("description",
+                  {required: "Description is required"})}
+                ></textarea>
+                {errors?.description && <p>{errors.description.message}</p>}
 
-              <input type="submit" />
+                <input type="submit" />
 
-            </fieldset>
-          </form>
+              </fieldset>
+            </form>
+          </div>
         </div>
       </div>
     </>

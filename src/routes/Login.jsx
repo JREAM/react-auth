@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
-import "../styles/Login.css"
-
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,8 +33,8 @@ function Login() {
 
   return (
     <>
-      <div className="login">
-        <div className="login__container">
+      <div className="center-container">
+        <div className="inner">
           <h2>Login</h2>
           {error && <span>{error}</span>}
 
@@ -56,13 +54,13 @@ function Login() {
               placeholder="Password"
             />
 
-            <button className="login__btn" type="submit">
+            <button className="login" type="submit">
               Login
             </button>
           </form>
 
           <button
-            className="login__btn login__google"
+            className="google"
             onClick={handleGoogleSignIn}
           >
             <i className="fa-brands fa-google"></i> Login with Google
