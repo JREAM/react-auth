@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
 function Navigation() {
   const { logOut, user } = useUserAuth()
+  const navigate = useNavigate()
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
     try {
       await logOut()
       navigate("/")
@@ -45,13 +46,10 @@ function Navigation() {
                   Dashboard
                 </NavLink>
               </li>
-              <li className="navigation-item user">
-                {user?.email}
-              </li>
               <li className="navigation-item">
-                <button className="navigation-logout-button" onClick={handleLogout}>
-                  Log Out
-                </button>
+                <a className="navigation-link" href="/" onClick={handleLogout}>
+                  Logout
+                </a>
               </li>
 
             </>

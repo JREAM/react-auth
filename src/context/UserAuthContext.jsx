@@ -17,7 +17,9 @@ const userAuthContext = createContext()
  * within the Components for the status
  */
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({})
+  // User State MUST be null, see [NOTES: Reference to Auth] at the bottom
+  const [user, setUser] = useState()
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
@@ -25,9 +27,8 @@ export function UserAuthContextProvider({ children }) {
       setUser(currentuser)
     })
 
-    return () => {
-      unsubscribe()
-    };
+    return unsubscribe()
+
   }, [])
 
   const googleSignIn = () => {
@@ -70,3 +71,12 @@ export function UserAuthContextProvider({ children }) {
 export function useUserAuth() {
   return useContext(userAuthContext)
 }
+
+  /**
+   * [NOTES: Reference to Auth]
+   * https://stackoverflow.com/questions/71703922/react-router-dom-unable-to-render-page-but-routes-back-due-to-privateroute/71704109#71704109
+   *
+   * The initial currentUser state matches the unauthenticated state, so when the app initially renders, if you are accessing a protected route the redirection will occur because the currentUser state hasn't updated yet.
+   *
+   * Since onAuthStateChanged returns null for unauthenticated users then I suggest using anything other than null for the initial currentUser state. undefined is a good indeterminant value. You can use this indeterminant value to conditionally render a loading indicator, or nothing at all, while the auth status is confirmed on the initial render.
+   */

@@ -16,6 +16,7 @@ import Navigation from './components/Navigation'
 
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PublicOnlyRoute from "./components/PublicOnlyRoute";
 
 function App() {
 
@@ -26,9 +27,21 @@ function App() {
         <Navigation />
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/forgot_password" element={<ForgotPassword />} />
+            <Route exact path="/login" element={
+              <PublicOnlyRoute>
+                <Login />
+              </PublicOnlyRoute>
+            } />
+            <Route exact path="/register" element={
+              <PublicOnlyRoute>
+                <Register />
+              </PublicOnlyRoute>
+            } />
+            <Route exact path="/forgot_password" element={
+              <PublicOnlyRoute>
+                <ForgotPassword />
+              </PublicOnlyRoute>
+            } />
             <Route exact path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />

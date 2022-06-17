@@ -8,15 +8,6 @@ function Projects() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    (async () => {
-      const docs = await getDocs(query(
-        collection(db, "projects"),
-        where("uid", "==", user.uid),
-        limit()
-      ))
-      setProjects(docs)
-    })()
-
   }, [])
 
   return (
