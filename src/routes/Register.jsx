@@ -1,75 +1,54 @@
 import React, { useEffect, useState } from "react"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { Link, useNavigate } from "react-router-dom"
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-  signInWithGitHub
-} from "../lib/firebase-config"
+import { useUserAuth } from "../context/UserAuthContext"
 
 import "../styles/Register.css"
 
 function Register() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
-  const [user, loading, error] = useAuthState(auth)
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+  const [password, setPassword] = useState('')
+  const { signUp } = useUserAuth()
   const navigate = useNavigate()
 
-  const register = () => {
-    if (!name) alert("Please enter name")
-    registerWithEmailAndPassword(name, email, password)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
   }
-
-  useEffect(() => {
-    if (loading) return
-    if (user) navigate("/dashboard")
-  }, [user, loading])
 
   return (
     <>
-      { loading &&
-      <div id="loader-container">
-        <div id="loader"></div>
-      </div>
-      }
       <div className="register">
         <div className="register__container">
           <h2>Register</h2>
-          <input
-            type="text"
-            className="register__textBox"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full Name"
-          />
-          <input
-            type="text"
-            className="register__textBox"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-          />
-          <input
-            type="password"
-            className="register__textBox"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <button className="register__btn" onClick={register}>
-            Register
-          </button>
-          <button
-            className="register__btn register__google"
-            onClick={signInWithGoogle}
-          >
-            <i className="fa-brands fa-google"></i> Register with Google
-          </button>
-          <button className="register__btn register__github" onClick={signInWithGitHub}>
-          <i className="fa-brands fa-github"></i> Register with GitHub
-          </button>
+          {error && <span>{error}</span>}
+
+          <form onSubmit={handleSubmit}>
+
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="E-mail Address"
+            />
+
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+
+            <button className="register__btn" type="submit">
+              Register
+            </button>
+          </form>
 
           <div>
             Already have an account? <Link to="/login">Login</Link> now.

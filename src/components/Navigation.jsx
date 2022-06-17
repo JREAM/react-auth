@@ -1,11 +1,20 @@
+import { useState } from 'react'
 import { NavLink } from "react-router-dom"
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth, logout } from "../lib/firebase-config"
+import { useUserAuth } from "../context/UserAuthContext";
 
 import "../styles/Home.css"
 
 function Navigation() {
-  const [user, loading, error] = useAuthState(auth)
+  const { logOut, user } = useUserAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <nav className="navigation">
@@ -42,9 +51,9 @@ function Navigation() {
                 {user?.email}
               </li>
               <li className="navigation-item">
-                <NavLink className="navigation-link" to="/" onClick={logout}>
+                <button className="navigation-logout-button" onClick={handleLogout}>
                   Log Out
-                </NavLink>
+                </button>
               </li>
 
             </>

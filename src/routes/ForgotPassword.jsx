@@ -1,44 +1,60 @@
 import React, { useEffect, useState } from "react"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { auth, sendPasswordReset } from "../lib/firebase-config"
+import { useUserAuth } from "../context/UserAuthContext"
 
 import "../styles/ForgotPassword.css"
 
 function ForgotPassword() {
-  const [email, setEmail] = useState("")
-  const [user, loading, error] = useAuthState(auth)
+  const [email, setEmail] = useState('')
+  const [wasSent, setWasSent] = useState(false)
+  const [error, setError] = useState('')
+
+  const { resetPassword } = useUserAuth()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (loading) return
-    if (user) navigate("/dashboard")
-  }, [user, loading])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await resetPassword(email)
+      setWasSent(true)
+    } catch (err) {
+      setError(err.message);
+      setWasSent(false)
+    }
+  };
 
   return (
     <>
-      { loading &&
-      <div id="loader-container">
-        <div id="loader"></div>
-      </div>
-      }
       <div className="forgot_password">
         <div className="forgot_password__container">
           <h2>Forgot Password</h2>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-          />
-          <button onClick={() => sendPasswordReset(email)}>
-            Send Reset Instructions
-          </button>
+          {error && <span>{error}</span>}
+          {wasSent && <span>Please check your email for instructions.</span>}
+
+          <form onSubmit={handleSubmit}>
+
+            <input
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="E-mail Address"
+            />
+            {!wasSent ?
+              <button type="submit">
+                Send Reset Instructions
+              </button>
+              :
+              <button type="submit" disabled="disabled">
+                Complete
+              </button>
+            }
+          </form>
 
           <div>
             Don't have an account? <Link to="/register">Register</Link> now.
           </div>
+
         </div>
       </div>
     </>

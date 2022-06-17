@@ -14,14 +14,14 @@ import DashboardProjects from "./routes/dashboard/Projects"
 import PageNotFound from "./routes/PageNotFound"
 import Navigation from './components/Navigation'
 
-// import { UserAuthContextProvider } from "./context/UserAuthContext";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import { UserAuthContextProvider } from "./context/UserAuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 
   return (
     <div className="app">
-      {/* <UserAuthContextProvider> */}
+      <UserAuthContextProvider>
         <BrowserRouter>
         <Navigation />
           <Routes>
@@ -29,19 +29,30 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/forgot_password" element={<ForgotPassword />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            {/* <Route exact path="/dashboard" element={
+            <Route exact path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } /> */}
-            <Route exact path="/dashboard/projects/create" element={<DashboardProjectsCreate />} />
-            <Route exact path="/dashboard/tasks" element={<DashboardTasks />} />
-            <Route exact path="/dashboard/projects" element={<DashboardProjects />} />
+            } />
+            <Route exact path="/dashboard/projects/create" element={
+              <ProtectedRoute>
+                <DashboardProjectsCreate />
+              </ProtectedRoute>
+            } />
+            <Route exact path="/dashboard/tasks" element={
+              <ProtectedRoute>
+                <DashboardTasks />
+              </ProtectedRoute>
+            } />
+            <Route exact path="/dashboard/projects" element={
+              <ProtectedRoute>
+                <DashboardProjects />
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-      {/* </UserAuthContextProvider> */}
+      </UserAuthContextProvider>
     </div>
   )
 }

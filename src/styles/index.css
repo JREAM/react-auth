@@ -53,6 +53,22 @@ textarea {
   border-right: .1rem solid #d1d1d1;
 }
 
+button.navigation-logout-button {
+  box-shadow: none;
+  border: none;
+  padding: 8px 20px 40px 20px;
+  transition: none;
+}
+
+button.navigation-logout-button:hover {
+  background: none;
+  transform: none;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+
+}
+
 /* Anchors */
 a {
   color: #606c76;
@@ -155,6 +171,16 @@ input[type=submit]:hover {
   color: #222;
   transform: translateY(-5px);
   border: 1px solid rgba(99, 99, 99, 0.3);
+}
+
+button:hover:disabled,
+button:hover[disabled] {
+  background: #f9f9f9;
+  border: 1px solid rgba(99, 99, 99, 0.3);
+  outline: none;
+  color: #555;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transform: none;
 }
 
 input::placeholder {
