@@ -28,19 +28,13 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={
-              <PublicOnlyRoute>
                 <Login />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/register" element={
-              <PublicOnlyRoute>
                 <Register />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/forgot_password" element={
-              <PublicOnlyRoute>
                 <ForgotPassword />
-              </PublicOnlyRoute>
             } />
             <Route exact path="/dashboard" element={
               <ProtectedRoute>

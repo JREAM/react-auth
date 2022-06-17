@@ -7,16 +7,19 @@ function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const { logIn, googleSignIn } = useUserAuth()
+  //Testing User
+  const { user, logIn, googleSignIn } = useUserAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
+    setError('')
     try {
       await logIn(email, password)
+      console.log('[Login]: handleSubmit', user)
       navigate("/dashboard")
     } catch (err) {
+      console.log('[Login]: error')
       setError(err.message)
     }
   };
@@ -25,8 +28,10 @@ function Login() {
     e.preventDefault()
     try {
       await googleSignIn()
+      console.log('[Login]: handleGoogleSignin', user)
       navigate("/dashboard")
     } catch (err) {
+      console.log('[Login]: error')
       setError(err.message)
     }
   }

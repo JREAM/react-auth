@@ -11,7 +11,7 @@ function Navigation() {
       await logOut()
       navigate("/")
     } catch (error) {
-      console.log(error.message)
+      console.log('[Navigation] handleLogout: ', error.message)
     }
   };
 

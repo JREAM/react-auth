@@ -5,8 +5,7 @@ import { useUserAuth } from '../context/UserAuthContext'
 const PublicOnlyRoute = ({ children }) => {
   const { user } = useUserAuth()
 
-  console.log(user)
-
+  console.log('[PublicOnlyRoute] User: ', user)
   if (!user) {
     return children
   }
