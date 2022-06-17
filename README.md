@@ -1,6 +1,18 @@
 # React Auth
 
-- **Features**
+- [React Auth](#react-auth)
+  - [Features](#features)
+  - [Development Notes](#development-notes)
+    - [Environment Variables](#environment-variables)
+    - [Vercel Hosting](#vercel-hosting)
+    - [Vite Environment Variables](#vite-environment-variables)
+    - [React (CRA) Enviroment Variables](#react-cra-enviroment-variables)
+    - [Firestore Notes](#firestore-notes)
+      - [Database Structure](#database-structure)
+      - [Common Methods](#common-methods)
+
+## Features
+
 - Google Firebase Authentication
 - Google Firestore Database _(User Info)_
 - Protected Routes _(react-router-dom)_
@@ -16,11 +28,11 @@ I am use `vite` so the environment variables are different than a `create-react-
 
 For more information on vite environ variables visit: [https://vitejs.dev/guide/env-and-mode.html](https://vitejs.dev/guide/env-and-mode.html)
 
-#### Vercel Hosting
+### Vercel Hosting
 
 - **IMPORTANT**: When using Vercel the `.env.local` is not included for build time so when under **Configure Project** manually add the `NAME/VALUE` to the **Environment Variables** one by one.
 
-#### Vite Environment Variables
+### Vite Environment Variables
 
 ```sh
 .env                # loaded in all cases
@@ -43,7 +55,7 @@ import.meta.env.VITE_APP_ID
 import.meta.env.VITE_PROJECT_NAME
 ```
 
-#### React (CRA) Enviroment Variables
+### React (CRA) Enviroment Variables
 
 - See the following for more information: [https://create-react-app.dev/docs/adding-custom-environment-variables/](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 
@@ -62,3 +74,31 @@ To use them in javascript you would do:
 process.env.REACT_APP_SECRET
 process.env.REACT_APP_KEY
 ```
+
+### Firestore Notes
+
+Visit the Documentation [https://firebase.google.com/docs/firestore/]
+
+#### Database Structure
+
+| Term        | Purpose                                                                                  |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| Documents   | Record containing fields, identified by a name                                           |
+| Collections | Containers for documents such as a Photo Collection with many Photo Documents within it. |
+| References  | Location pointing to an object in the database                                           |
+
+#### Common Methods
+
+| Method        | Purpose                                               |
+| ------------- | ----------------------------------------------------- |
+| `addDoc`      | Create a document and get a unique ID back            |
+| `deleteDoc`   | Delete a document (Does not delete sub-collection)    |
+| `deleteField` | Delete specific fields of a document                  |
+| `getDoc`      | Get a single document back                            |
+| `getDocs`     | Get many documents back                               |
+| `setDoc`      | Create a document attached to an ID                   |
+| `updateDoc`   | Update certain fields rather than the entire document |
+
+---
+
+&copy;2002 JREAM

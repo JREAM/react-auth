@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import { NavLink } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext";
+import { useUserAuth } from "../context/UserAuthContext"
 
 import "../styles/Home.css"
 
 function Navigation() {
-  const { logOut, user } = useUserAuth();
+  const { logOut, user } = useUserAuth()
 
   const handleLogout = async () => {
     try {
-      await logOut();
-      navigate("/");
+      await logOut()
+      navigate("/")
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   };
 

@@ -14,13 +14,13 @@ function ForgotPassword() {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+    e.preventDefault()
+    setError("")
     try {
       await resetPassword(email)
       setWasSent(true)
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
       setWasSent(false)
     }
   };

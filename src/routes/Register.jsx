@@ -12,13 +12,13 @@ function Register() {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+    e.preventDefault()
+    setError("")
     try {
-      await signUp(email, password);
-      navigate("/dashboard");
+      await signUp(email, password)
+      navigate("/dashboard")
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
     }
   }
 

@@ -13,23 +13,23 @@ function Login() {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+    e.preventDefault()
+    setError("")
     try {
       await logIn(email, password)
       navigate("/dashboard")
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
     }
   };
 
   const handleGoogleSignIn = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await googleSignIn();
-      navigate("/dashboard");
+      await googleSignIn()
+      navigate("/dashboard")
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
     }
   }
 
