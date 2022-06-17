@@ -102,6 +102,11 @@ button.login:hover {
   box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset, rgb(23 0 102 / 30%) 0px 40px 80px, rgb(0 0 0 / 30%) 0px 10px 30px;
 }
 
+/* Breadcrumbs */
+div.breadcrumbs {
+  font-size: 1.3rem;
+}
+
 /* Anchors */
 a {
   color: #6175e6;

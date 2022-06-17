@@ -15,7 +15,7 @@ import PageNotFound from "./routes/PageNotFound"
 import Navigation from './components/Navigation'
 
 import { UserAuthContextProvider } from "./context/UserAuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
@@ -30,24 +30,24 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/forgot_password" element={<ForgotPassword />} />
             <Route exact path="/dashboard" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <Dashboard />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/projects/create" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardProjectsCreate />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/tasks" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardTasks />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route exact path="/dashboard/projects" element={
-              <ProtectedRoute>
+              <PrivateRoute>
                 <DashboardProjects />
-              </ProtectedRoute>
+              </PrivateRoute>
             } />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

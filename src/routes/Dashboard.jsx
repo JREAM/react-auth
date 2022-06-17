@@ -1,12 +1,25 @@
-import React, { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { useUserAuth } from "../context/UserAuthContext"
 
 function Dashboard() {
+  const { user } = useUserAuth()
 
   return (
     <>
       <div className="container">
+
+        <div className='breadcrumbs'>
+          <span><Link to="/">Home</Link> / Dashboard</span>
+        </div>
+
         <h2>Dashboard</h2>
+        <div className="row">
+          <div className="column">
+            <p>
+            You are logged in as: <b>{user?.email}</b>
+            </p>
+          </div>
+        </div>
         <div className="row">
           <div className="column">
             <Link to="/dashboard/projects/create">

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { db } from '../../firebase-config'
+import { Link } from 'react-router-dom'
+// import { db } from '../../firebase-config'
 
 function Projects() {
   const [projects, setProjects] = useState('')
@@ -8,20 +9,16 @@ function Projects() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    (async () => {
-      const docs = await getDocs(query(
-        collection(db, "projects"),
-        where("uid", "==", user.uid),
-        limit()
-      ))
-      setProjects(docs)
-    })()
 
   }, [])
 
   return (
     <>
       <div className="container">
+        <div className='breadcrumbs'>
+          <span><Link to="/">Home</Link> / <Link to="/dashboard">Dashboard</Link> / Projects</span>
+        </div>
+
         <div className="row">
           <div className="column">
             <h2>Projects</h2>

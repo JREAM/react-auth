@@ -17,7 +17,9 @@ const userAuthContext = createContext()
  * within the Components for the status
  */
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({})
+  // Do not let useState be undefined to fix routing delays
+  // See Reference Links at bottom
+  const [user, setUser] = useState()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
@@ -70,3 +72,7 @@ export function UserAuthContextProvider({ children }) {
 export function useUserAuth() {
   return useContext(userAuthContext)
 }
+
+// Reference Links
+// https://stackoverflow.com/questions/71703922/react-router-dom-unable-to-render-page-but-routes-back-due-to-privateroute/71704109#71704109
+// https://stackoverflow.com/questions/70961712/react-router-dom-6-page-redirected-to-sign-in-page-even-when-user-is-signed-in/70961859#70961859

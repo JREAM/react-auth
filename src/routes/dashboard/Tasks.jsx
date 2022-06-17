@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 function Tasks() {
   const navigate = useNavigate()
@@ -7,6 +8,9 @@ function Tasks() {
   return (
     <>
       <div className="container">
+        <div className='breadcrumbs'>
+          <span><Link to="/">Home</Link> / <Link to="/dashboard">Dashboard</Link> / Tasks</span>
+        </div>
         <div className="row">
           <div className="column">
             <h2>Tasks List</h2>

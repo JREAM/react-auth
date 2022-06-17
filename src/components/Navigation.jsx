@@ -45,13 +45,10 @@ function Navigation() {
                   Dashboard
                 </NavLink>
               </li>
-              <li className="navigation-item user">
-                {user?.email}
-              </li>
               <li className="navigation-item">
-                <button className="navigation-logout-button" onClick={handleLogout}>
+                <a href="#" className="navigation-link" onClick={handleLogout}>
                   Log Out
-                </button>
+                </a>
               </li>
 
             </>
