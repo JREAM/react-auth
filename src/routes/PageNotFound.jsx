@@ -14,9 +14,11 @@ function PageNotFound() {
         </div>
       </div>
 
-      <div className="center-container">
-        <div className="inner">
-          Page Not Found
+      <div className="container">
+        <div className="row">
+          <div className="silver column column-50 column-offset-25">
+            Page Not Found
+          </div>
         </div>
       </div>
     </>

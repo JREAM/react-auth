@@ -72,15 +72,6 @@ a.navigation-link:hover {
   border: none;
 }
 
-button.login {
-  width: 100%;
-}
-
-button.login:hover {
-  transform: translateY(-2px);
-  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset, rgb(23 0 102 / 30%) 0px 40px 80px, rgb(0 0 0 / 30%) 0px 10px 30px;
-}
-
 /* Breadcrumbs */
 div.breadcrumbs {
   font-size: 1.3rem;
@@ -144,6 +135,11 @@ button:hover[disabled] {
   transform: none;
 }
 
+button.login,
+button.register {
+  width: 100%;
+}
+
 /* Lists */
 ul {
   margin: 2rem 0 2rem 0;
@@ -159,58 +155,7 @@ ul li ul li ul {
   margin: 0 0 0rem 3rem;
 }
 
-/* Notifications */
-div.error,
-div.info,
-div.warning,
-div.success {
-  border-radius: 5px;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  padding: 8px 12px;
-}
-
-div.error {
-  background: rgb(255, 240, 240);
-  border: 1px solid hsl(0, 100%, 90%);
-  color: rgb(142, 39, 49);
-}
-
-div.success {
-  background: rgb(242, 255, 240);
-  border: 1px solid hsl(113, 50%, 78%);
-  color: rgb(29, 108, 31);
-}
-
-div.warning {
-  background: rgb(255, 253, 240);
-  border: 1px solid hsl(47, 50%, 78%);
-  color: rgb(108, 88, 29);
-}
-
-div.info {
-  background: rgb(240, 243, 255);
-  border: 1px solid hsl(223, 50%, 78%);
-  color: rgb(29, 62, 108);
-}
-
-/** Container Colors */
-div.blue {
-  background: linear-gradient(209.21deg, rgb(29, 145, 252) 13.57%, rgb(90, 54, 192) 98.38%);
-}
-
-div.red {
-  background: linear-gradient(209.21deg, rgb(255, 114, 98) 13.57%, rgb(153, 40, 52) 98.38%);
-}
-
-div.purple {
-  background: linear-gradient(209.21deg, rgb(136, 0, 148) 13.57%, rgb(81, 77, 255) 98.38%);
-}
-
-div.green {
-  background: linear-gradient(209.21deg, rgb(101, 187, 118) 13.57%, rgb(70, 111, 171) 98.38%);
-}
-
+/* Input */
 input::placeholder {
   color: rgb(171, 171, 171);
 }
@@ -252,29 +197,42 @@ h6 {
   text-shadow: 1px 1px 1px #fff;
 }
 
-/* Center Container */
-div.center-container {
-  width: 98vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Containers */
+div.silver,
+div.blue,
+div.red,
+div.purple,
+div.green {
+  border: 1px solid rgba(99, 99, 99, 0.1);
+  border-radius: 0.8rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  padding: 20px 40px !important;
 }
 
-div.center-container div.inner {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background: #F2F6FD;
+div.silver {
   background: linear-gradient(0deg, #F2F6FD 0%, #fff 100%);
-  border-radius: 0.8rem;
-  padding: 30px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-  border: 1px solid rgba(99, 99, 99, 0.1);
 }
 
 div.center-container div {
   margin-top: 7px;
 }
+
+div.blue {
+  background: linear-gradient(209.21deg, rgb(29, 145, 252) 13.57%, rgb(90, 54, 192) 98.38%);
+}
+
+div.red {
+  background: linear-gradient(209.21deg, rgb(255, 114, 98) 13.57%, rgb(153, 40, 52) 98.38%);
+}
+
+div.purple {
+  background: linear-gradient(209.21deg, rgb(136, 0, 148) 13.57%, rgb(81, 77, 255) 98.38%);
+}
+
+div.green {
+  background: linear-gradient(209.21deg, rgb(101, 187, 118) 13.57%, rgb(70, 111, 171) 98.38%);
+}
+
 
 /* Social Auth */
 button.google,
@@ -283,6 +241,44 @@ button.google:hover {
   color: #fff;
   background: linear-gradient(#fa684e 0%, #DF4A2F 100%);
 }
+
+/* Container Notifications */
+
+/* Notifications */
+div.error,
+div.info,
+div.warning,
+div.success {
+  border-radius: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding: 8px 12px;
+}
+
+div.error {
+  background: rgb(255, 240, 240);
+  border: 1px solid hsl(0, 100%, 90%);
+  color: rgb(142, 39, 49);
+}
+
+div.success {
+  background: rgb(242, 255, 240);
+  border: 1px solid hsl(113, 50%, 78%);
+  color: rgb(29, 108, 31);
+}
+
+div.warning {
+  background: rgb(255, 253, 240);
+  border: 1px solid hsl(47, 50%, 78%);
+  color: rgb(108, 88, 29);
+}
+
+div.info {
+  background: rgb(240, 243, 255);
+  border: 1px solid hsl(223, 50%, 78%);
+  color: rgb(29, 62, 108);
+}
+
 
 /* Full Page Loader */
 div#loader-container {

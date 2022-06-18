@@ -35,34 +35,37 @@ function Register() {
         </div>
       </div>
 
-      <div className="center-container">
-        <div className="inner">
-          <h2>Register</h2>
-          {error && <div className="error">{error}</div>}
+      <div className="container">
+        <div className="row">
+          <div className="silver column column-50 column-offset-25">
 
-          <form onSubmit={handleSubmit}>
+            <h2>Register</h2>
+            {error && <div className="error">{error}</div>}
 
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail Address"
-            />
+            <form onSubmit={handleSubmit}>
 
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="E-mail Address"
+              />
 
-            <button className="register__btn" type="submit" disabled={disabledButton}>
-              Register
-            </button>
-          </form>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
 
-          <div>
-            Already have an account? <Link to="/login">Login</Link> now.
+              <button className="register" type="submit" disabled={disabledButton}>
+                Register
+              </button>
+            </form>
+
+            <div>
+              Already have an account? <Link to="/login">Login</Link> now.
+            </div>
           </div>
         </div>
       </div>

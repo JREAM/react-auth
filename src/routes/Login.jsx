@@ -43,51 +43,54 @@ function Login() {
         </div>
       </div>
 
-      <div className="center-container">
-        <div className="inner">
-          <h2>Login</h2>
-          {error && <div className="error">{error}</div>}
+      <div className="container">
+        <div className="row">
+          <div className="silver column column-50 column-offset-25">
 
-          <form onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            {error && <div className="error">{error}</div>}
 
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail Address"
-            />
+            <form onSubmit={handleSubmit}>
 
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="E-mail Address"
+              />
 
-            <button className="login" type="submit">
-              Login
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+
+              <button className="login" type="submit">
+                Login
+              </button>
+            </form>
+
+            <button
+              className="google"
+              onClick={handleGoogleSignIn}
+            >
+              <i className="fa-brands fa-google"></i>
+              Login with Google
             </button>
-          </form>
 
-          <button
-            className="google"
-            onClick={handleGoogleSignIn}
-          >
-            <i className="fa-brands fa-google"></i>
-            Login with Google
-          </button>
+            {/* <button className="login__btn login__github" >
+            <i className="fa-brands fa-github"></i> Login with GitHub
+            </button> */}
+            <div>
+              <Link to="/forgot_password">Forgot Password</Link>
+            </div>
 
-          {/* <button className="login__btn login__github" >
-          <i className="fa-brands fa-github"></i> Login with GitHub
-          </button> */}
-          <div>
-            <Link to="/forgot_password">Forgot Password</Link>
+            <div>
+              Don't have an account? <Link to="/register">Register</Link> now.
+            </div>
+
           </div>
-
-          <div>
-            Don't have an account? <Link to="/register">Register</Link> now.
-          </div>
-
         </div>
       </div>
     </>
