@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext"
+import { useAuth } from "../context/AuthProvider"
 
 function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [wasSent, setWasSent] = useState(false)
   const [error, setError] = useState('')
 
-  const { resetPassword } = useUserAuth()
-  const navigate = useNavigate()
+  const { resetPassword } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -38,8 +36,10 @@ function ForgotPassword() {
       <div className="center-container">
         <div className="inner">
           <h2>Forgot Password</h2>
-          {error && <span>{error}</span>}
-          {wasSent && <span>Please check your email for instructions.</span>}
+          {error && <div className="error">{error}</div>}
+          {wasSent && <div className="success">
+            Please check your email for instructions.
+            </div>}
 
           <form onSubmit={handleSubmit}>
 

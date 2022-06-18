@@ -13,6 +13,7 @@
 
 ## Features
 
+- Demo: [https://react-auth-six.vercel.app/]
 - Google Firebase Authentication
 - Google Firestore Database _(User Info)_
 - Protected Routes _(react-router-dom)_
@@ -83,8 +84,8 @@ Visit the Documentation [https://firebase.google.com/docs/firestore/]
 
 | Term        | Purpose                                                                                  |
 | ----------- | ---------------------------------------------------------------------------------------- |
-| Documents   | Record containing fields, identified by a name                                           |
 | Collections | Containers for documents such as a Photo Collection with many Photo Documents within it. |
+| Documents   | Record containing fields, identified by a name                                           |
 | References  | Location pointing to an object in the database                                           |
 
 #### Common Methods

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext"
+import { useAuth } from "../context/AuthProvider"
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const { logIn, googleSignIn } = useUserAuth()
+  const { logIn, googleSignIn } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
+    setError('')
     try {
       await logIn(email, password)
-      navigate("/dashboard")
+      navigate('/dashboard')
     } catch (err) {
       setError(err.message)
     }
@@ -25,7 +25,7 @@ function Login() {
     e.preventDefault()
     try {
       await googleSignIn()
-      navigate("/dashboard")
+      navigate('/dashboard')
     } catch (err) {
       setError(err.message)
     }
@@ -46,7 +46,7 @@ function Login() {
       <div className="center-container">
         <div className="inner">
           <h2>Login</h2>
-          {error && <span>{error}</span>}
+          {error && <div className="error">{error}</div>}
 
           <form onSubmit={handleSubmit}>
 
@@ -73,7 +73,8 @@ function Login() {
             className="google"
             onClick={handleGoogleSignIn}
           >
-            <i className="fa-brands fa-google"></i> Login with Google
+            <i className="fa-brands fa-google"></i>
+            Login with Google
           </button>
 
           {/* <button className="login__btn login__github" >
@@ -82,9 +83,11 @@ function Login() {
           <div>
             <Link to="/forgot_password">Forgot Password</Link>
           </div>
+
           <div>
             Don't have an account? <Link to="/register">Register</Link> now.
           </div>
+
         </div>
       </div>
     </>

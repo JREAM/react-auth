@@ -42,7 +42,7 @@ function ProjectsCreate() {
         <div className="row">
           <div className="column">
             <h2>Project: Create</h2>
-            {message && <p>message</p>}
+            {message && <div className="info">message</div>}
 
             <form onSubmit={handleSubmit(onSubmit, onError)}>
               <fieldset>
@@ -54,7 +54,7 @@ function ProjectsCreate() {
                   {...register("title",
                   {required: "Project Title is Required"})}
                 />
-                {errors?.title && <p>{errors.title.message}</p>}
+                {errors?.title && <div className="error">{errors.title.message}</div>}
 
                 <label htmlFor="description">Description</label>
                 <textarea
@@ -62,7 +62,7 @@ function ProjectsCreate() {
                   {...register("description",
                   {required: "Description is required"})}
                 ></textarea>
-                {errors?.description && <p>{errors.description.message}</p>}
+                {errors?.description && <div className="error">{errors.description.message}</div>}
 
                 <input type="submit" />
 

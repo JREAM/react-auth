@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext"
+import { Link } from "react-router-dom"
+import { useAuth } from "../context/AuthProvider"
 
 function Dashboard() {
-  const { user } = useUserAuth()
+  const { user } = useAuth()
 
   return (
     <>
@@ -17,19 +17,12 @@ function Dashboard() {
 
         <div className="row">
           <div className="column">
-            <p>
+            <div className="success">
             You are logged in with: <b>{user?.email}</b>
-            </p>
+            </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="column">
-            <p>
-            You are logged in as: <b>{user?.email}</b>
-            </p>
-          </div>
-        </div>
         <div className="row">
           <div className="column">
             <Link to="/dashboard/projects/create">

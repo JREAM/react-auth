@@ -16,7 +16,7 @@ function PageNotFound() {
 
       <div className="center-container">
         <div className="inner">
-        Page Not Found
+          Page Not Found
         </div>
       </div>
     </>

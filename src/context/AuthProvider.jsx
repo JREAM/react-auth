@@ -10,13 +10,13 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 
-const userAuthContext = createContext()
+const authContext = createContext()
 
 /**
  * These calls are generic in order to set try/catch callbacks
  * within the Components for the status
  */
-export function UserAuthContextProvider({ children }) {
+export function AuthProvider({ children }) {
   // User State MUST be null, see [NOTES: Reference to Auth] at the bottom
   const [user, setUser] = useState()
 
@@ -52,7 +52,7 @@ export function UserAuthContextProvider({ children }) {
   }
 
   return (
-    <userAuthContext.Provider
+    <authContext.Provider
       value={{
         googleSignIn,
         logIn,
@@ -63,12 +63,12 @@ export function UserAuthContextProvider({ children }) {
       }}
     >
       {children}
-    </userAuthContext.Provider>
+    </authContext.Provider>
   )
 }
 
-export function useUserAuth() {
-  return useContext(userAuthContext)
+export function useAuth() {
+  return useContext(authContext)
 }
 
   /**

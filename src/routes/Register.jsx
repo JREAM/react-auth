@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext"
+import { useAuth } from "../context/AuthProvider"
 
 function Register() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [password, setPassword] = useState('')
-  const { signUp } = useUserAuth()
+  const [disabledButton, setDisabledButton] = useState(false)
+  const { signUp } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setDisabledButton('disabled')
     setError("")
     try {
       await signUp(email, password)
       navigate("/dashboard")
     } catch (err) {
       setError(err.message)
+      setDisabledButton(false)
     }
   }
 
@@ -35,7 +38,7 @@ function Register() {
       <div className="center-container">
         <div className="inner">
           <h2>Register</h2>
-          {error && <span>{error}</span>}
+          {error && <div className="error">{error}</div>}
 
           <form onSubmit={handleSubmit}>
 
@@ -53,7 +56,7 @@ function Register() {
               placeholder="Password"
             />
 
-            <button className="register__btn" type="submit">
+            <button className="register__btn" type="submit" disabled={disabledButton}>
               Register
             </button>
           </form>
