@@ -16,6 +16,7 @@ import PageNotFound from "./routes/PageNotFound"
 
 import { AuthProvider } from "./context/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
 
@@ -26,9 +27,21 @@ function App() {
         <Navigation />
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/forgot_password" element={<ForgotPassword />} />
+            <Route exact path="/login" element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            } />
+            <Route exact path="/register" element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            } />
+            <Route exact path="/forgot_password" element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            } />
             <Route exact path="/dashboard" element={
               <PrivateRoute>
                 <Dashboard />

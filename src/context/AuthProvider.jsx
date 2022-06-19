@@ -21,44 +21,43 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState()
 
   useEffect(() => {
+    console.log("[AuthProvider] useEffect")
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser)
+      console.log("[AuthProvider] onAuthStateChanged: ", currentuser)
       setUser(currentuser)
     })
-
     return unsubscribe()
-
   }, [])
+
+  const emailSignIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const emailSignUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
 
   const googleSignIn = () => {
     const googleAuthProvider = new GoogleAuthProvider()
     return signInWithPopup(auth, googleAuthProvider)
   }
 
-  const logIn = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
+  const passwordResetEmail = (email) => {
+    return sendPasswordResetEmail(auth, email)
   }
 
   const logOut = () => {
     return signOut(auth)
   }
 
-  const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email)
-  }
-
-  const signUp = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
-
   return (
     <authContext.Provider
       value={{
+        emailSignIn,
+        emailSignUp,
         googleSignIn,
-        logIn,
         logOut,
-        resetPassword,
-        signUp,
+        passwordResetEmail,
         user,
       }}
     >

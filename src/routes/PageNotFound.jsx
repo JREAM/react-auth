@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 function PageNotFound() {
+  document.title = 'Page not Found'
 
   return (
     <>

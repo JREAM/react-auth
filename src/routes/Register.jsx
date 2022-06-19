@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthProvider"
+import { useForm } from 'react-hook-form'
 
 function Register() {
-  const [email, setEmail] = useState('')
-  const [error, setError] = useState('')
-  const [password, setPassword] = useState('')
-  const [disabledButton, setDisabledButton] = useState(false)
-  const { signUp } = useAuth()
-  const navigate = useNavigate()
+  document.title = 'Register'
 
-  const handleSubmit = async (e) => {
+  const [error, setError] = useState('')
+  const [disabledButton, setDisabledButton] = useState(false)
+  const { emailSignUp } = useAuth()
+  const navigate = useNavigate()
+  const { register, handleSubmit, formState: {errors}} = useForm({
+    mode: "onBlur"
+  })
+
+  const onSubmit = async (data) => {
     e.preventDefault()
     setDisabledButton('disabled')
-    setError("")
+    setError('')
     try {
-      await signUp(email, password)
+      await emailSignUp(data.email, data.password)
       navigate("/dashboard")
     } catch (err) {
       setError(err.message)
       setDisabledButton(false)
     }
+  }
+
+  const onError = (data) => {
+    console.log('[Form Error]: ', data)
   }
 
   return (
@@ -42,28 +50,35 @@ function Register() {
             <h2>Register</h2>
             {error && <div className="error">{error}</div>}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail Address"
-              />
-
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="form-control">
+                <input
+                  type="email"
+                  placeholder="E-mail Address"
+                  {...register("email",
+                  {required: "Email is Required"})}
+                  className={errors?.email && 'error'}
+                />
+                {errors?.email && <span className="error">{errors.email.message}</span>}
+              </div>
+              <div className="form-control">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  {...register("password",
+                  {required: "Password is Required"})}
+                  className={errors?.password && 'error'}
+                />
+                {errors?.password && <span className="error">{errors.password.message}</span>}
+              </div>
 
               <button className="register" type="submit" disabled={disabledButton}>
                 Register
               </button>
             </form>
 
-            <div>
+            <div className="mt-20 txt-center">
               Already have an account? <Link to="/login">Login</Link> now.
             </div>
           </div>

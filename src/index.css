@@ -75,6 +75,7 @@ a.navigation-link:hover {
 /* Breadcrumbs */
 div.breadcrumbs {
   font-size: 1.3rem;
+  padding: 0 0 1rem 0;
 }
 
 /* Anchors */
@@ -125,6 +126,13 @@ input[type=submit]:hover {
   box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset, rgb(23 0 102 / 30%) 0px 40px 80px, rgb(0 0 0 / 30%) 0px 10px 30px;
 }
 
+input[type=text]:disabled,
+input[type=email]:disabled,
+input[type=password]:disabled {
+  background: #ececec !important;
+  color: #777;
+}
+
 button:hover:disabled,
 button:hover[disabled] {
   background: #f9f9f9;
@@ -136,13 +144,19 @@ button:hover[disabled] {
 }
 
 button.login,
-button.register {
+button.register,
+button.forgot-password {
   width: 100%;
 }
 
 /* Lists */
 ul {
   margin: 2rem 0 2rem 0;
+}
+
+ul ul {
+  font-size: 100%;
+  /* Overwrite Milligram */
 }
 
 ul li {
@@ -154,6 +168,7 @@ ul li ul,
 ul li ul li ul {
   margin: 0 0 0rem 3rem;
 }
+
 
 /* Input */
 input::placeholder {
@@ -194,7 +209,6 @@ h4,
 h5,
 h6 {
   font-weight: 600;
-  text-shadow: 1px 1px 1px #fff;
 }
 
 /* Containers */
@@ -209,6 +223,21 @@ div.green {
   padding: 20px 40px !important;
 }
 
+div.blue,
+div.red,
+div.purple,
+div.green {
+  color: #f4f4f4;
+}
+
+div.blue a,
+div.red a,
+div.purple a,
+div.green a {
+  color: #f4f4f4;
+  border-bottom-color: #f4f4f4;
+}
+
 div.silver {
   background: linear-gradient(0deg, #F2F6FD 0%, #fff 100%);
 }
@@ -218,6 +247,7 @@ div.center-container div {
 }
 
 div.blue {
+  color: #fff;
   background: linear-gradient(209.21deg, rgb(29, 145, 252) 13.57%, rgb(90, 54, 192) 98.38%);
 }
 
@@ -233,18 +263,53 @@ div.green {
   background: linear-gradient(209.21deg, rgb(101, 187, 118) 13.57%, rgb(70, 111, 171) 98.38%);
 }
 
-
 /* Social Auth */
 button.google,
 button.google:focus,
 button.google:hover {
   color: #fff;
+  width: 100%;
   background: linear-gradient(#fa684e 0%, #DF4A2F 100%);
 }
 
-/* Container Notifications */
+button.google i {
+  margin-right: 10px;
+}
 
-/* Notifications */
+/* Forms */
+fieldset,
+input,
+select,
+textarea {
+  margin-bottom: 0;
+  /* Overwrite Milligram */
+}
+
+.form-control {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.form-control span.error {
+  border: 0;
+  color: #ffffff;
+  color: rgb(142, 39, 49);
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 0 10px;
+}
+
+textarea.error,
+input.error {
+  background: rgb(255, 240, 240) !important;
+  border: 1px solid hsl(0, 20%, 60%) !important;
+}
+
+input.error::placeholder {
+  color: hsl(0, 28%, 72%);
+}
+
 div.error,
 div.info,
 div.warning,
@@ -279,6 +344,46 @@ div.info {
   color: rgb(29, 62, 108);
 }
 
+/* Utility */
+.txt-center {
+  text-align: center;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.mt-20 {
+  margin-top: 20px
+}
+
+.mt-40 {
+  margin-top: 40px
+}
+
+.mb-20 {
+  margin-top: 20px
+}
+
+.mb-40 {
+  margin-top: 40px
+}
+
+.pt-20 {
+  padding-top: 20px
+}
+
+.pt-40 {
+  padding-top: 40px
+}
+
+.pb-20 {
+  padding-top: 20px
+}
+
+.pb-40 {
+  padding-top: 40px
+}
 
 /* Full Page Loader */
 div#loader-container {

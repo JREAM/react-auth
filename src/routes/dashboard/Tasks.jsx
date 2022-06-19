@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom'
 
 function Tasks() {
-  const navigate = useNavigate()
+  document.title = 'Tasks'
 
   return (
     <>
@@ -12,7 +11,7 @@ function Tasks() {
           <span><Link to="/">Home</Link> / <Link to="/dashboard">Dashboard</Link> / Tasks</span>
         </div>
         <div className="row">
-          <div className="column">
+          <div className="silver column">
             <h2>Tasks List</h2>
             <p>
               Anim nostrud ut velit aliqua nisi ullamco elit nostrud laboris fugiat in sunt. Esse pariatur eu pariatur Lorem fugiat nisi eiusmod. Fugiat sint quis et ea dolor. Veniam non ipsum magna sint nostrud eiusmod Lorem ex velit. Excepteur deserunt tempor qui cillum pariatur duis laboris nulla.

@@ -8,7 +8,10 @@ function Navigation() {
 
   const handleLogout = async (e) => {
     try {
+      console.log('[Navigation] User:', user)
       await logOut()
+      console.log('[Navigation] Logout')
+      console.log('[Navigation] User (after logout):', user)
       navigate("/")
     } catch (err) {
       console.error(err.message)

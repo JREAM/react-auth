@@ -5,8 +5,10 @@ import { useForm } from 'react-hook-form'
 import { db } from '../../firebase-config'
 
 function ProjectsCreate() {
+  document.title = 'Project: Create'
+  const [wasCreated, setWasCreated] = useState(false)
   const [message, setMessage] = useState('')
-  const { register, handleSubmit, watch, formState: {errors}} = useForm({
+  const { register, handleSubmit, formState: {errors}} = useForm({
     mode: "onBlur"
   })
   const navigate = useNavigate()
@@ -20,15 +22,18 @@ function ProjectsCreate() {
         name: data.name,
         description: data.description
       })
+      setWasCreated(true)
       setMessage("Project has been saved")
+      // @TODO Navigate to project list or something
     } catch (err) {
       console.error(err)
       setMessage(err)
+      setWasCreated(false)
     }
   }
 
   const onError = (data) => {
-    console.log('Error:', data)
+    console.log('[Form Error]: ', data)
   }
 
   return (
@@ -47,24 +52,38 @@ function ProjectsCreate() {
             <form onSubmit={handleSubmit(onSubmit, onError)}>
               <fieldset>
 
-                <label htmlFor="title">Project Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  {...register("title",
-                  {required: "Project Title is Required"})}
-                />
-                {errors?.title && <div className="error">{errors.title.message}</div>}
+                <div className="form-control">
+                  <label htmlFor="title">Project Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    {...register("title",
+                    {required: "Project Title is Required"})}
+                    className={errors?.title && 'error'}
+                  />
+                  {errors?.title && <div className="error">{errors.title.message}</div>}
+                </div>
 
-                <label htmlFor="description">Description</label>
-                <textarea
-                  id="description"
-                  {...register("description",
-                  {required: "Description is required"})}
-                ></textarea>
-                {errors?.description && <div className="error">{errors.description.message}</div>}
+                <div className="form-control">
+                  <label htmlFor="description">Description</label>
+                  <textarea
+                    id="description"
+                    {...register("description",
+                    {required: "Description is required"})}
+                    className={errors?.description && 'error'}
+                  ></textarea>
+                  {errors?.description && <div className="error">{errors.description.message}</div>}
+                </div>
 
-                <input type="submit" />
+                {!wasCreated ?
+                <button type="submit">
+                Create
+                </button>
+                :
+                <div className="info txt-center">
+                  Creating your Project
+                </div>
+              }
 
               </fieldset>
             </form>

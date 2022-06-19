@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react"
+import { useAuth } from "../context/AuthProvider"
 
 function Home() {
+  document.title = 'Home'
+
+  const { user } = useAuth()
 
   return (
     <div className="container">
@@ -9,8 +13,24 @@ function Home() {
       </div>
 
       <div className="row">
-        <div className="column">
+        <div className="silver column">
           <h2>Jesse's App Home</h2>
+
+          <div className="warning">
+            <ul>
+              <li><b>Bugs</b></li>
+              <li>- Why does <b>state</b> need a refresh for the auth? It stopped working for no reason.</li>
+              <li>- Login does not redirect because <b>authUser</b> is null (Until page Refresh)</li>
+              <li>- Logout does not redirect because <b>user</b> is still there (Until page Refresh)</li>
+              <li>- When logged in, going to PublicRoute /login flashes the page. <b>useEffect</b> is running after the render too slow</li>
+            </ul>
+          </div>
+          {user?.email &&
+          <div className="success">
+            Testing, is user logged? <b>{user?.email}</b>
+          </div>
+          }
+
           <p>
             This is a study and exercise to re-familiarize and keep myself sharp with <b>functional</b> programming which requires a completely different mindset than <b>object-oriented</b> programming. Since I find it a bit more difficult to retain and memorize than other programming styles I like to build miniature projects.
             </p>
@@ -44,7 +64,9 @@ function Home() {
           </ul>
         </div>
       </div>
-      <div className="row">
+
+
+      <div className="row mt-40">
         <div className="column">
           <h3>Misc Element Sample</h3>
           <div className="info">Info message</div>

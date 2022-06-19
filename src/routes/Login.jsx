@@ -1,31 +1,42 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthProvider"
+import { useForm } from 'react-hook-form'
 
 function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-
-  const { logIn, googleSignIn } = useAuth()
+  const { user, emailSignIn, googleSignIn } = useAuth()
   const navigate = useNavigate()
+  const { register, handleSubmit, formState: {errors}} = useForm({
+    mode: "onBlur"
+  })
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (data) => {
     setError('')
     try {
-      await logIn(email, password)
+      await emailSignIn(data.email, data.password)
       navigate('/dashboard')
+      console.log('[Login:Email] Redirect to Dashboard')
     } catch (err) {
+      console.log(err)
       setError(err.message)
     }
-  };
+  }
+
+  const onError = (data) => {
+    console.log('[Form Error]: ', data)
+  }
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault()
     try {
+      console.log('[Login:Google] Before Google Signin')
+      console.log('[Login:Google] user: ', user)
       await googleSignIn()
+      console.log('[Login:Google] After Google Signin')
+      console.log('[Login:Google] user: ', user)
       navigate('/dashboard')
+      console.log('[Login:Google] Redirect to Dashboard')
     } catch (err) {
       setError(err.message)
     }
@@ -50,21 +61,29 @@ function Login() {
             <h2>Login</h2>
             {error && <div className="error">{error}</div>}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
 
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail Address"
-              />
+              <div className="form-control">
+                <input
+                  type="email"
+                  placeholder="E-mail Address"
+                  {...register("email",
+                  {required: "Email is Required"})}
+                  className={errors?.email && 'error'}
+                />
+                {errors?.email && <span className="error">{errors.email.message}</span>}
+              </div>
 
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+              <div className="form-control">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  {...register("password",
+                  {required: "Password is Required"})}
+                  className={errors?.password && 'error'}
+                />
+                {errors?.password && <span className="error">{errors.password.message}</span>}
+              </div>
 
               <button className="login" type="submit">
                 Login
@@ -82,12 +101,13 @@ function Login() {
             {/* <button className="login__btn login__github" >
             <i className="fa-brands fa-github"></i> Login with GitHub
             </button> */}
-            <div>
-              <Link to="/forgot_password">Forgot Password</Link>
+
+            <div className="mt-20 txt-center">
+              Don't have an account? <Link to="/register">Register</Link> now.
             </div>
 
-            <div>
-              Don't have an account? <Link to="/register">Register</Link> now.
+            <div className="mt-20 txt-center">
+              <Link to="/forgot_password">Forgot Password</Link>
             </div>
 
           </div>

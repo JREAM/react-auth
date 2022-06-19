@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function Projects() {
+  document.title = 'Projects'
+
   const [projects, setProjects] = useState('')
 
   return (
@@ -11,7 +14,7 @@ function Projects() {
         </div>
 
         <div className="row">
-          <div className="column">
+          <div className="silver column">
             <h2>Projects</h2>
             {projects && <span>Iterate Them Here</span>}
 

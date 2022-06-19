@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthProvider"
+import { useForm } from 'react-hook-form'
 
 function ForgotPassword() {
-  const [email, setEmail] = useState('')
+  document.title = 'Forgot Password'
+
   const [wasSent, setWasSent] = useState(false)
   const [error, setError] = useState('')
+  const { register, handleSubmit, formState: {errors}} = useForm({
+    mode: "onBlur"
+  })
 
-  const { resetPassword } = useAuth()
+  const { passwordResetEmail } = useAuth()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError("")
+  const onError = (data) => {
+    console.log('[Form Error]: ', data)
+  }
+
+  const onSubmit = async (data) => {
+    setError('')
     try {
-      await resetPassword(email)
+      await passwordResetEmail(data.email)
       setWasSent(true)
     } catch (err) {
       setError(err.message)
@@ -33,36 +41,43 @@ function ForgotPassword() {
         </div>
       </div>
 
-      <div className="center-container">
-        <div className="inner">
-          <h2>Forgot Password</h2>
-          {error && <div className="error">{error}</div>}
-          {wasSent && <div className="success">
-            Please check your email for instructions.
-            </div>}
+      <div className="container">
+        <div className="row">
+          <div className="silver column column-50 column-offset-25">
 
-          <form onSubmit={handleSubmit}>
+            <h2>Forgot Password</h2>
 
-            <input
-              type="text"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-mail Address"
-            />
-            {!wasSent ?
-              <button type="submit">
-                Send Reset Instructions
-              </button>
-              :
-              <button type="submit" disabled="disabled">
-                Complete
-              </button>
-            }
-          </form>
+            {error && <div className="error">{error}</div>}
 
-          <div>
-            Don't have an account? <Link to="/register">Register</Link> now.
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
+
+              <div className="form-control">
+                <input
+                  type="email"
+                  placeholder="E-mail Address"
+                  {...register("title",
+                  {required: "email is Required"})}
+                  disabled={wasSent && 'disabled'}
+                />
+                {errors?.title && <div className="error">{errors.title.message}</div>}
+              </div>
+
+              {!wasSent ?
+                <button type="submit" className="forgot-password">
+                  Send Reset Instructions
+                </button>
+                :
+                <div className="success txt-center">
+                  Please check your email for instructions.
+                </div>
+              }
+            </form>
+
+            <div className="mt-20 txt-center">
+              Don't have an account? <Link to="/register">Register</Link> now.
+            </div>
+
           </div>
-
         </div>
       </div>
     </>
