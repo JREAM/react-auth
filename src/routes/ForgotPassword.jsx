@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { useAuth } from "../context/AuthProvider"
+import { useAuth } from "../context/AuthUserContext"
 import { useForm } from 'react-hook-form'
 
 function ForgotPassword() {

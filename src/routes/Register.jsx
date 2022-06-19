@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../context/AuthProvider"
+import { useAuth } from "../context/AuthUserContext"
 import { useForm } from 'react-hook-form'
 
 function Register() {
@@ -15,7 +15,6 @@ function Register() {
   })
 
   const onSubmit = async (data) => {
-    e.preventDefault()
     setDisabledButton('disabled')
     setError('')
     try {

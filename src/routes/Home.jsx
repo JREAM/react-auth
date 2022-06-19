@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useAuth } from "../context/AuthProvider"
+import { useAuth } from "../context/AuthUserContext"
 
 function Home() {
   document.title = 'Home'
@@ -19,8 +19,8 @@ function Home() {
           <div className="warning">
             <ul>
               <li><b>Bugs</b></li>
-              <li>- Login does not redirect because <b>authUser</b> is null (Until page Refresh)</li>
               <li>- When logged in, going to PublicRoute /login flashes the page. <b>useEffect</b> is running after the render too slow</li>
+              <li>- On a logged in page like Dashboard, Projects or Tasks when I refresh it goes to Login then Dashboard, something to do with <b>Public/Private Route</b> with <b>react-router-dom</b> and possibly, this has <b>everything to do with onAuthState</b> being too slow</li>
             </ul>
           </div>
           {user?.email &&

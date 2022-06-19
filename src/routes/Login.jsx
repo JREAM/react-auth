@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../context/AuthProvider"
+import { useAuth } from "../context/AuthUserContext"
 import { useForm } from 'react-hook-form'
 
 function Login() {
@@ -11,6 +11,9 @@ function Login() {
     mode: "onBlur"
   })
 
+  useEffect(() => {
+    console.log('LOGIN DOM')
+  })
   const onSubmit = async (data) => {
     setError('')
     try {

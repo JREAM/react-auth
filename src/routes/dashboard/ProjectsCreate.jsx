@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { useForm } from 'react-hook-form'
-import { db } from '../../firebase-config'
+import { createProject } from "../../lib/projects"
+import { useAuth } from "../../context/AuthUserContext"
 
 function ProjectsCreate() {
   document.title = 'Project: Create'
+  const { user } = useAuth()
   const [wasCreated, setWasCreated] = useState(false)
   const [message, setMessage] = useState('')
   const { register, handleSubmit, formState: {errors}} = useForm({
@@ -17,9 +19,9 @@ function ProjectsCreate() {
     console.log('Submit:', data)
 
     try {
-      await addDoc(collection(db, "projects"), {
+      createProject({
         uid: user.uid,
-        name: data.name,
+        title: data.title,
         description: data.description
       })
       setWasCreated(true)
@@ -28,8 +30,8 @@ function ProjectsCreate() {
     } catch (err) {
       console.error(err)
       setMessage(err)
-      setWasCreated(false)
     }
+    setWasCreated(false)
   }
 
   const onError = (data) => {

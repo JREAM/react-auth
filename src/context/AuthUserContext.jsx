@@ -10,24 +10,21 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 
-const authContext = createContext()
+const authUserContext = createContext()
 
-/**
- * These calls are generic in order to set try/catch callbacks
- * within the Components for the status
- */
-export function AuthProvider({ children }) {
-  // User State MUST be EMPTY, see [NOTES: Reference to Auth] at the bottom
-  // Do not use {} object
+export function AuthUserProvider({ children }) {
+  // @important State MUST be EMPTY, see bottom of file
   const [user, setUser] = useState()
 
   useEffect(() => {
-    console.log("[AuthProvider] useEffect")
+    console.log("[AuthUserContext] useEffect")
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("[AuthProvider] onAuthStateChanged: ", currentuser)
+      console.log("[AuthUserContext] onAuthStateChanged: ", currentuser)
       setUser(currentuser)
     })
-    // Important! This must return an anonymous function otherwise it wont execute unless the page reloads
+
+    // @important Must return anonymous function otherwise
+    //    execution will not happen without a page reload
     return () => {
       unsubscribe()
     }
@@ -55,7 +52,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <authContext.Provider
+    <authUserContext.Provider
       value={{
         emailSignIn,
         emailSignUp,
@@ -66,12 +63,12 @@ export function AuthProvider({ children }) {
       }}
     >
       {children}
-    </authContext.Provider>
+    </authUserContext.Provider>
   )
 }
 
 export function useAuth() {
-  return useContext(authContext)
+  return useContext(authUserContext)
 }
 
   /**

@@ -14,7 +14,7 @@ import DashboardTasks from "./routes/dashboard/Tasks"
 import Navigation from './components/Navigation'
 import PageNotFound from "./routes/PageNotFound"
 
-import { AuthProvider } from "./context/AuthProvider";
+import { AuthUserProvider } from "./context/AuthUserContext";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="app">
-      <AuthProvider>
+      <AuthUserProvider>
         <BrowserRouter>
         <Navigation />
           <Routes>
@@ -65,7 +65,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-      </AuthProvider>
+      </AuthUserProvider>
     </div>
   )
 }
