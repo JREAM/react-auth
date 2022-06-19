@@ -19,9 +19,7 @@ function Home() {
           <div className="warning">
             <ul>
               <li><b>Bugs</b></li>
-              <li>- Why does <b>state</b> need a refresh for the auth? It stopped working for no reason.</li>
               <li>- Login does not redirect because <b>authUser</b> is null (Until page Refresh)</li>
-              <li>- Logout does not redirect because <b>user</b> is still there (Until page Refresh)</li>
               <li>- When logged in, going to PublicRoute /login flashes the page. <b>useEffect</b> is running after the render too slow</li>
             </ul>
           </div>

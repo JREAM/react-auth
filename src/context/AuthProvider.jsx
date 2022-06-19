@@ -17,7 +17,8 @@ const authContext = createContext()
  * within the Components for the status
  */
 export function AuthProvider({ children }) {
-  // User State MUST be null, see [NOTES: Reference to Auth] at the bottom
+  // User State MUST be EMPTY, see [NOTES: Reference to Auth] at the bottom
+  // Do not use {} object
   const [user, setUser] = useState()
 
   useEffect(() => {
@@ -26,7 +27,10 @@ export function AuthProvider({ children }) {
       console.log("[AuthProvider] onAuthStateChanged: ", currentuser)
       setUser(currentuser)
     })
-    return unsubscribe()
+    // Important! This must return an anonymous function otherwise it wont execute unless the page reloads
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   const emailSignIn = (email, password) => {
