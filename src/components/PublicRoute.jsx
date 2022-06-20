@@ -1,15 +1,17 @@
 import React from "react"
-import { Navigate, useLocation } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { useAuth } from '../context/AuthUserContext'
+import LoadingScreen from './LoadingScreen'
 
 const PublicRoute = ({ children }) => {
   const { user } = useAuth()
-  const location = useLocation()
 
-  const stat = (user ? 'Logged in' : 'Not logged in')
-  console.info('[PublicRoute] User: ', Math.round(Math.random() * 2000), stat)
-  if (user) {
-    return <Navigate to="/dashboard" state={{ from: location }} />
+  if (typeof user ===  'undefined') {
+    // Prevents the non-access page from "flashing"
+    return <LoadingScreen />
+  }
+  else if (user) {
+    return <Navigate to="/dashboard" />
   }
   return children
 };

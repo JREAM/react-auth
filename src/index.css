@@ -385,30 +385,6 @@ div.info {
   padding-top: 40px
 }
 
-/* Full Page Loader */
-div#loader-container {
-  background: #999;
-  height: 100%;
-  left: 0;
-  opacity: 0.5;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-div#loader {
-  animation: spin 2s linear infinite;
-  border-radius: 50%;
-  border-radius: 47%;
-  border: 40px solid #e6e6e6;
-  border-top: 40px solid #9b4dca;
-  height: 200px;
-  left: 45%;
-  position: relative;
-  top: 50%;
-  width: 200px;
-}
-
 /* Single Loader */
 div.loader {
   animation: spin 2s linear infinite;

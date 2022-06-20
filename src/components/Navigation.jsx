@@ -21,7 +21,7 @@ function Navigation() {
   return (
     <nav className="navigation">
       <section className="container">
-        <span className="navigation-title"><b>My App</b></span>
+        <span className="navigation-title"><b>Jesse's App</b></span>
         <ul className="navigation-list">
           <li className="navigation-item">
             <NavLink className={({ isActive }) => (isActive ? "navigation-link active" : "navigation-link")} to="/">

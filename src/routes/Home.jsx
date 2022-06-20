@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { useAuth } from "../context/AuthUserContext"
-
 function Home() {
   document.title = 'Home'
-
-  const { user } = useAuth()
 
   return (
     <div className="container">
@@ -14,20 +9,8 @@ function Home() {
 
       <div className="row">
         <div className="silver column">
-          <h2>Jesse's App Home</h2>
+          <h2>Development in React</h2>
 
-          <div className="warning">
-            <ul>
-              <li><b>Bugs</b></li>
-              <li>- When logged in, going to PublicRoute /login flashes the page. <b>useEffect</b> is running after the render too slow</li>
-              <li>- On a logged in page like Dashboard, Projects or Tasks when I refresh it goes to Login then Dashboard, something to do with <b>Public/Private Route</b> with <b>react-router-dom</b> and possibly, this has <b>everything to do with onAuthState</b> being too slow</li>
-            </ul>
-          </div>
-          {user?.email &&
-          <div className="success">
-            Testing, is user logged? <b>{user?.email}</b>
-          </div>
-          }
 
           <p>
             This is a study and exercise to re-familiarize and keep myself sharp with <b>functional</b> programming which requires a completely different mindset than <b>object-oriented</b> programming. Since I find it a bit more difficult to retain and memorize than other programming styles I like to build miniature projects.
@@ -41,6 +24,22 @@ function Home() {
             <p>
               You can see my code on GitHub at <a href="https://github.com/JREAM/react-auth">https://github.com/JREAM/react-auth</a>
           </p>
+
+          <div className="warning">
+            <ul>
+              <li><b>Bugs</b></li>
+              <li>- Best place for business logic? Perhaps a <b>/lib</b> area where <b>await function</b> calls are prepared and the try/catch is within the component.</li>
+              <li>- Firestore is not as fun to use as standard SQL, finding the API a little annoying with snapshots and iterating a method to get data.</li>
+            </ul>
+          </div>
+          <div className="info">
+            <ul>
+              <li><b>Fixes</b></li>
+              <li>+ Fixed route screen flashing from <b>Auth State</b> not being ready before ProtectedRoute render by adding a loading screen, works great!</li>
+              <li>+ Fixed page refresh under re-routing any protected pages back to the dashboard. With <b>Auth (typeof user === undefined)</b> it prevents all problems.</li>
+            </ul>
+          </div>
+
           <ul>
             <li><b>Written using some of the following technologies:</b></li>
             <li><a href="https://vitejs.dev/">Vite</a></li>
